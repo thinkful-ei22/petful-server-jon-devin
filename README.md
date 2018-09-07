@@ -1,45 +1,31 @@
-# Thinkful Backend Template
+# Petful Server
+## A Place for Second Chances
 
-A template for developing and deploying Node.js apps.
+Petful is an adoption center for cats and dogs. This simple web app allows users to "adopt" different cats or dogs, which displays which displays a small profile of which animals you can adopt. However, the cats and dogs are lined up in queues, and you can only adopt the least recently added pet from each category. 
 
-## Getting started
+## Live App
 
-### Setting up a project
+This is the backend server, which is used in conjunction with the front-end. The front-end may be found here:
+https://github.com/thinkful-ei22/petful-client-jon-devin
 
-* Move into your projects directory: `cd ~/YOUR_PROJECTS_DIRECTORY`
-* Clone this repository: `git clone https://github.com/Thinkful-Ed/backend-template YOUR_PROJECT_NAME`
-* Move into the project directory: `cd YOUR_PROJECT_NAME`
-* Install the dependencies: `npm install`
-* Create a new repo on GitHub: https://github.com/new
-    * Make sure the "Initialize this repository with a README" option is left unchecked
-* Update the remote to point to your GitHub repository: `git remote set-url origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME`
+The live-app url for the backend may be found here:
+https://petful-devinjon-server.herokuapp.com/
 
-### Working on the project
+It has a GET and DELETE endpoint for `/api/cats` and `/api/dogs`. GET will fetch the next animal in the appropriate queue. DELETE will remove the next animal in the queue and send it to the user.
 
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Run the development task: `npm start`
-    * Starts a server running at http://localhost:8080
-    * Automatically restarts when any of your files change
+Example:
+> GET https://petful-devinjon-server.herokuapp.com/api/cats
+will return
+`{
+"imageURL": "https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg",
+"imageDescription": "Orange bengal cat with black stripes lounging on concrete.",
+"name": "Fluffy",
+"sex": "Female",
+"age": 2,
+"breed": "Bengal",
+"story": "Thrown on the street"
+}`
 
-## Databases
+## Tech Stack
 
-By default, the template is configured to connect to a MongoDB database using Mongoose.  It can be changed to connect to a PostgreSQL database using Knex by replacing any imports of `db-mongoose.js` with imports of `db-knex.js`, and uncommenting the Postgres `DATABASE_URL` lines in `config.js`.
-
-## Deployment
-
-Requires the [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-command-line).
-
-### Setting up the project on Heroku
-
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Create the Heroku app: `heroku create PROJECT_NAME`
-
-* If your backend connects to a database, you need to configure the database URL:
-    * For a MongoDB database: `heroku config:set DATABASE_URL=mongodb://USERNAME:PASSWORD@HOST:PORT/DATABASE_NAME`
-    * For a PostgreSQL database: `heroku config:set DATABASE_URL=postgresql://USERNAME:PASSWORD@HOST:PORT/DATABASE_NAME`
-
-* If you are creating a full-stack app, you need to configure the client origin: `heroku config:set CLIENT_ORIGIN=https://www.YOUR_DEPLOYED_CLIENT.com`
-
-### Deploying to Heroku
-
-* Push your code to Heroku: `git push heroku master`
+* This app implements Node.js and Mongoose to create the server
