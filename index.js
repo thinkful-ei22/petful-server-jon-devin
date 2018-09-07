@@ -10,6 +10,7 @@ const { dbConnect } = require('./db-mongoose');
 
 //get routes
 const catsRouter = require('./routes/cats');
+const dogsRouter = require('./routes/dogs');
 
 const app = express();
 
@@ -25,7 +26,9 @@ app.use(
   })
 );
 
+//Hook up routers
 app.use('/api/cats', catsRouter);
+app.use('/api/dogs', dogsRouter);
 
 
 function runServer(port = PORT) {
