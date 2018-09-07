@@ -13,9 +13,9 @@ https://petful-devinjon-server.herokuapp.com/
 
 It has a GET and DELETE endpoint for `/api/cats` and `/api/dogs`. GET will fetch the next animal in the appropriate queue. DELETE will remove the next animal in the queue and send it to the user.
 
-Example:
-> GET https://petful-devinjon-server.herokuapp.com/api/cats
-will return
+### Example:
+`GET https://petful-devinjon-server.herokuapp.com/api/cats`
+Will return
 `{
 "imageURL": "https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg",
 "imageDescription": "Orange bengal cat with black stripes lounging on concrete.",
