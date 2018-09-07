@@ -13,6 +13,8 @@ https://petful-devinjon-server.herokuapp.com/
 
 It has a GET and DELETE endpoint for `/api/cats` and `/api/dogs`. GET will fetch the next animal in the appropriate queue. DELETE will remove the next animal in the queue and send it to the user.
 
+To reset the database and cruelly put the cats and dogs back into the adoption center, navigate to the following endpoint: https://petful-devinjon-server.herokuapp.com/api/reset
+
 ### Example:
 `GET https://petful-devinjon-server.herokuapp.com/api/cats`
 
