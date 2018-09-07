@@ -1,12 +1,12 @@
 const express = require('express');
-
+const Queue = require('../utils/queue');
 //schema models
 //TODO
 
 const router = express.Router();
 
 //Dummy Data
-const tempCats = [
+const someCats = [
   {
     imageURL:'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg', 
     imageDescription: 'Orange bengal cat with black stripes lounging on concrete.',
@@ -36,13 +36,20 @@ const tempCats = [
   }
 ];
 
+const catsQueue = new Queue();
+
+catsQueue.enqueue(someCats[0]);
+catsQueue.enqueue(someCats[1]);
+catsQueue.enqueue(someCats[2]);
+
+
 router.get('/', (req, res, next)=>{
-  res.json(tempCats[0]);
+  res.json(catsQueue.front());
 });
 
 router.delete('/', (req,res,next)=>{
-  if(tempCats.length > 0){
-    const yourCat = tempCats.shift();
+  if(!catsQueue.isEmpty()){
+    const yourCat = catsQueue.dequeue();
     res.json(yourCat);
   }else{
     const err = new Error('We ran out of cats');

@@ -1,4 +1,5 @@
 const express = require('express');
+const Queue = require('../utils/queue');
 
 //schema models
 //TODO
@@ -6,7 +7,7 @@ const express = require('express');
 const router = express.Router();
 
 
-const tempDogs = 
+const someDogs = 
 [
   {
     imageURL: 'http://www.dogster.com/wp-content/uploads/2015/05/Cute%20dog%20listening%20to%20music%201_1.jpg',
@@ -37,14 +38,21 @@ const tempDogs =
   },
 ];
 
+const dogsQueue = new Queue();
+
+dogsQueue.enqueue(someDogs[0]);
+dogsQueue.enqueue(someDogs[1]);
+dogsQueue.enqueue(someDogs[2]);
+
+
 router.get('/', (req, res, next)=>{
-  res.json(tempDogs[0]);
+  res.json(dogsQueue.front());
 });
 
 router.delete('/', (req,res,next)=>{
-  if(tempDogs.length > 0){
-    const yourDog = tempDogs.shift();
-    res.json(yourDog);
+  if(!dogsQueue.isEmpty()){
+    const yourdog = dogsQueue.dequeue();
+    res.json(yourdog);
   }else{
     const err = new Error('We ran out of dogs');
     err.status = 400;
